@@ -20,10 +20,13 @@ public class PlayerController : MonoBehaviour {
 	public Material waveOutMaterial;
 	public Material doubleTapMaterial;
 
+	public float threshold;
+
 	public float speed;
 	public Text countText;
 
 	public Vector3[] movementCache;
+	private float[] variances;
 
 	// The pose from the last update. This is used to determine if the pose has changed
 	// so that actions are only performed upon making them rather than every frame during
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		cacheSize = 20;
 		movementCache = new Vector3[cacheSize];
+		variances = new float[cacheSize];
 		rb = GetComponent<Rigidbody> ();
 		count = 0;
 		setCountText ();
@@ -147,11 +151,22 @@ public class PlayerController : MonoBehaviour {
 		Vector3 movement = getMovementFromRotation (rotation);
 
 		rb.AddForce (movement * speed);
-
 		addToCache (rotation);
 
-		variance (movementCache);
+		float v = variance (movementCache);
 
+		if (v < threshold) {
+			addToVariances (v);
+		}
+
+		interpretVariances ();
+
+	}
+
+	private void interpretVariances() {
+		if (Stats.average (variances) > 1) {
+			Debug.Log ("jittering");
+		}
 	}
 
 	private float variance(Vector3[] array) {
@@ -282,6 +297,13 @@ public class PlayerController : MonoBehaviour {
 			this.movementCache [i - 1] = this.movementCache [i];
 		}
 		this.movementCache[this.movementCache.Length - 1] = vec;
+	}
+
+	private void addToVariances(float v) {
+		for(int i = 1; i < this.variances.Length; i++) {
+			this.variances [i - 1] = this.variances [i];
+		}
+		this.variances[this.variances.Length - 1] = v;
 	}
 
 	void OnTriggerEnter(Collider other) {
