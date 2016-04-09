@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	public Text countText;
 
+	public Vector3[] movementCache;
+
 	// The pose from the last update. This is used to determine if the pose has changed
 	// so that actions are only performed upon making them rather than every frame during
 	// which they are active.
@@ -39,9 +41,12 @@ public class PlayerController : MonoBehaviour {
 
 	private Rigidbody rb;
 	private int count;
+	private int cacheSize;
 
 	// Use this for initialization
 	void Start () {
+		cacheSize = 20;
+		movementCache = new Vector3[cacheSize];
 		rb = GetComponent<Rigidbody> ();
 		count = 0;
 		setCountText ();
@@ -84,7 +89,7 @@ public class PlayerController : MonoBehaviour {
 				//rb.AddForce (new Vector3(0, 0, -10) * speed);
 
 				ExtendUnlockAndNotifyUserAction (thalmicMyo);
-			} else if (thalmicMyo.pose == Pose.FingersSpread) {
+			} else if (thalmicMyo.pose == Pose.FingersSpread || Input.GetKeyDown("r")) {
 				updateReference = true;
 
 				ExtendUnlockAndNotifyUserAction(thalmicMyo);
@@ -139,7 +144,24 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		Vector3 rotation = FromQ2 (transform.rotation);
+		Vector3 movement = getMovementFromRotation (rotation);
 
+		rb.AddForce (movement * speed);
+
+		addToCache (rotation);
+
+		variance (movementCache);
+
+	}
+
+	private float variance(Vector3[] array) {
+		if (array [0].x == 0f && array[0].y == 0f && array[0].z == 0f) {
+			return 0;
+		}
+		return Stats.variance3 (array);
+	}
+
+	private Vector3 getMovementFromRotation(Vector3 rotation) {
 		float playerX, playerZ;
 
 		if (rotation.x < 180) {
@@ -153,20 +175,10 @@ public class PlayerController : MonoBehaviour {
 			playerX = -(360 - rotation.y);
 		}
 
-
-		Vector3 movement = new Vector3 (playerX, 0, playerZ);
-
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
-
-		//Vector3 movement = new Vector3 (moveHorizontal, 0, moveVertical);
-
-		rb.AddForce (movement * speed);
-
+		return new Vector3 (playerX, 0, playerZ);
 	}
 
-	public static Vector3 FromQ2 (Quaternion q1)
-	{
+	private Vector3 FromQ2 (Quaternion q1) {
 		float sqw = q1.w * q1.w;
 		float sqx = q1.x * q1.x;
 		float sqy = q1.y * q1.y;
@@ -194,16 +206,14 @@ public class PlayerController : MonoBehaviour {
 		return NormalizeAngles (v * Mathf.Rad2Deg);
 	}
 
-	static Vector3 NormalizeAngles (Vector3 angles)
-	{
+	private Vector3 NormalizeAngles (Vector3 angles) {
 		angles.x = NormalizeAngle (angles.x);
 		angles.y = NormalizeAngle (angles.y);
 		angles.z = NormalizeAngle (angles.z);
 		return angles;
 	}
 
-	static float NormalizeAngle (float angle)
-	{
+	private float NormalizeAngle (float angle) {
 		while (angle>360)
 			angle -= 360;
 		while (angle<0)
@@ -214,8 +224,7 @@ public class PlayerController : MonoBehaviour {
 	// Compute the angle of rotation clockwise about the forward axis relative to the provided zero roll direction.
 	// As the armband is rotated about the forward axis this value will change, regardless of which way the
 	// forward vector of the Myo is pointing. The returned value will be between -180 and 180 degrees.
-	float rollFromZero (Vector3 zeroRoll, Vector3 forward, Vector3 up)
-	{
+	private float rollFromZero (Vector3 zeroRoll, Vector3 forward, Vector3 up) {
 		// The cosine of the angle between the up vector and the zero roll vector. Since both are
 		// orthogonal to the forward vector, this tells us how far the Myo has been turned around the
 		// forward axis relative to the zero roll vector, but we need to determine separately whether the
@@ -237,8 +246,7 @@ public class PlayerController : MonoBehaviour {
 	// Compute a vector that points perpendicular to the forward direction,
 	// minimizing angular distance from world up (positive Y axis).
 	// This represents the direction of no rotation about its forward axis.
-	Vector3 computeZeroRollVector (Vector3 forward)
-	{
+	private Vector3 computeZeroRollVector (Vector3 forward) {
 		Vector3 antigravity = Vector3.up;
 		Vector3 m = Vector3.Cross (myo.transform.forward, antigravity);
 		Vector3 roll = Vector3.Cross (m, myo.transform.forward);
@@ -247,8 +255,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	// Adjust the provided angle to be within a -180 to 180.
-	float normalizeAngle (float angle)
-	{
+	private float normalizeAngle (float angle) {
 		if (angle > 180.0f) {
 			return angle - 360.0f;
 		}
@@ -260,8 +267,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Extend the unlock if ThalmcHub's locking policy is standard, and notifies the given myo that a user action was
 	// recognized.
-	void ExtendUnlockAndNotifyUserAction (ThalmicMyo myo)
-	{
+	private void ExtendUnlockAndNotifyUserAction (ThalmicMyo myo) {
 		ThalmicHub hub = ThalmicHub.instance;
 
 		if (hub.lockingPolicy == LockingPolicy.Standard) {
@@ -269,6 +275,13 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		myo.NotifyUserAction ();
+	}
+
+	private void addToCache(Vector3 vec) {
+		for(int i = 1; i < this.movementCache.Length; i++) {
+			this.movementCache [i - 1] = this.movementCache [i];
+		}
+		this.movementCache[this.movementCache.Length - 1] = vec;
 	}
 
 	void OnTriggerEnter(Collider other) {
