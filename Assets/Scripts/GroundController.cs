@@ -9,6 +9,9 @@ public class GroundController : MonoBehaviour {
 	private bool shrink;
 	private bool grow;
 
+	//private PlayerController pc;
+	public static int pcCount;
+
 	// Use this for initialization
 	void Start () {
 		frameCount = 100;
@@ -19,6 +22,8 @@ public class GroundController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		pcCount = PlayerController.pcCount;
+		Debug.Log ("frame count: " + pcCount);
 		if (Input.GetKeyDown ("s")) {
 			shrink = true;
 			grow = false;

@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	public Text countText;
 
+
 	// The pose from the last update. This is used to determine if the pose has changed
 	// so that actions are only performed upon making them rather than every frame during
 	// which they are active.
@@ -40,14 +41,23 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody rb;
 	private int count;
 
+	public static int pcCount;
+
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		count = 0;
 		setCountText ();
+		pcCount = 0;
+	}
+	void Update(){
+		pcCount = pcCount + 1;
 	}
 
 	void FixedUpdate() {
+
+
 		// Access the ThalmicMyo component attached to the Myo game object.
 		ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
 
