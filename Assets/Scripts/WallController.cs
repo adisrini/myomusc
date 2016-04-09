@@ -10,46 +10,34 @@ public class WallController : MonoBehaviour {
 	public static float currEastPos;
 	public static float currWestPos;
 
+	public GameObject ground;
+
+	private Vector3 position;
+
 	void Start() {
 		if(this.gameObject.CompareTag("East Wall")) {
-			currEastPos = this.transform.position.x;
-			Debug.Log ("EAST: " + currEastPos);
+			position.x = ground.transform.localScale.x * 5;
+			transform.position = position;
 		}
 			
 		if (this.gameObject.CompareTag ("West Wall")) {
-			currWestPos = this.transform.position.x;
-			Debug.Log ("WEST: " + currWestPos);
+			position.x = ground.transform.localScale.x * -5;
+			transform.position = position;
 		}
-			
+
+
 	}
 
 	void Update() {
-		if (GroundController.shrink) {
-			if(this.gameObject.CompareTag("East Wall")){
-				Vector3 pos = this.transform.position;
-				pos.x = pos.x - 0.05f;
-				this.transform.position = pos;
-			}
-			if(this.gameObject.CompareTag("West Wall")){
-				Vector3 pos = this.transform.position;
-				pos.x = pos.x + 0.05f;
-				this.transform.position = pos;
-			}
+		if(this.gameObject.CompareTag("East Wall")) {
+			position.x = ground.transform.localScale.x * 5;
+			transform.position = position;
 		}
 
-		if (GroundController.grow) {
-			if(this.gameObject.CompareTag("East Wall")){
-				Vector3 pos = this.transform.position;
-				pos.x = pos.x + 0.05f;
-				this.transform.position = pos;
-			}
-			if(this.gameObject.CompareTag("West Wall")){
-				Vector3 pos = this.transform.position;
-				pos.x = pos.x - 0.05f;
-				this.transform.position = pos;
-			}
+		if (this.gameObject.CompareTag ("West Wall")) {
+			position.x = ground.transform.localScale.x * -5;
+			transform.position = position;
 		}
-	
 	}
 
 	void OnTriggerEnter(Collider other) {

@@ -9,8 +9,6 @@ public class GroundController : MonoBehaviour {
 	public static bool shrink;
 	public static bool grow;
 
-	private int pcCount;
-
 	// Use this for initialization
 	void Start () {
 		frameCount = 100;
@@ -21,19 +19,18 @@ public class GroundController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		pcCount = PlayerController.pcCount;
-		if (Input.GetKeyDown ("s")) {
+		if (PlayerController.jitter) {
 			shrink = true;
 			grow = false;
 			currentScale = transform.localScale.x;
 		}
-		if (Input.GetKeyDown ("g")) {
+		if (!PlayerController.jitter) {
 			shrink = false;
 			grow = true;
 			currentScale = transform.localScale.x;
 		}
 		if(shrink) {
-			float intendedScale = 1F;
+			float intendedScale = 0.2F;
 			if (transform.localScale.x <= intendedScale) {
 				shrink = false;
 			} else {

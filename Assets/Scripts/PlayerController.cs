@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
 	public Material waveOutMaterial;
 	public Material doubleTapMaterial;
 
+	public static bool jitter;
+
 	public float threshold;
 
 	public float speed;
@@ -46,21 +48,15 @@ public class PlayerController : MonoBehaviour {
 	private int count;
 	private int cacheSize;
 
-	public static int pcCount;
-
-
 	// Use this for initialization
 	void Start () {
+		threshold = 10;
 		cacheSize = 20;
 		movementCache = new Vector3[cacheSize];
 		variances = new float[cacheSize];
 		rb = GetComponent<Rigidbody> ();
 		count = 0;
 		setCountText ();
-		pcCount = 0;
-	}
-	void Update(){
-		pcCount = pcCount + 1;
 	}
 
 	void FixedUpdate() {
@@ -173,9 +169,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void interpretVariances() {
-		if (Stats.average (variances) > 1) {
-			Debug.Log ("jittering");
-		}
+		Debug.Log (Stats.average (variances));
+		jitter = Stats.average (variances) > 1;
 	}
 
 	private float variance(Vector3[] array) {
