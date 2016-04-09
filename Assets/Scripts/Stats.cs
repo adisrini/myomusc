@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Stats {
 	
-	private static float average(float[] array) {
+	public static float average(float[] array) {
 		int length = array.Length;
 		float sum = 0;
 		for (int i = 0; i < array.Length; i++) {
@@ -22,17 +22,19 @@ public class Stats {
 			yVals [i] = normalizeAngle(array [i].y);
 			zVals [i] = normalizeAngle(array [i].z);
 		}
-		return 0;
+		return (float) Math.Sqrt (varianceSq (xVals) + varianceSq (yVals) + varianceSq (zVals));
 
 	}
 
-	private float variance(float[] array) {
+	private static float varianceSq(float[] array) {
 		float avg = average (array);
 		float sum = 0;
 		for (int i = 0; i < array.Length; i++) {
-			sum += (float) Math.Pow (array.Length - avg, 2);
+
+			sum += (float) Math.Pow (array[i] - avg, 2);
 		}
-		return 0;
+		return (float) Math.Pow (sum / array.Length, 2);
+
 	}
 
 	private static float normalizeAngle (float angle) {
