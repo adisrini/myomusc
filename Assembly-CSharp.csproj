@@ -3,9 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
     <ProjectGuid>{64E81404-ACAC-966A-B16F-94EDD4C2A1CC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -34,42 +33,43 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+      <HintPath>..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Myo\Scripts\Myo.NET\EventTypes.cs" />
-     <Compile Include="Assets\Myo\Scripts\Myo.NET\Hub.cs" />
-     <Compile Include="Assets\Myo\Scripts\Myo.NET\Myo.cs" />
-     <Compile Include="Assets\Myo\Scripts\Myo.NET\Pose.cs" />
-     <Compile Include="Assets\Myo\Scripts\Myo.NET\Properties\AssemblyInfo.cs" />
-     <Compile Include="Assets\Myo\Scripts\Myo.NET\Quaternion.cs" />
-     <Compile Include="Assets\Myo\Scripts\Myo.NET\Vector3.cs" />
-     <Compile Include="Assets\Myo\Scripts\Myo.NET\libmyo.cs" />
-     <Compile Include="Assets\Myo\Scripts\ThalmicHub.cs" />
-     <Compile Include="Assets\Myo\Scripts\ThalmicMyo.cs" />
-     <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\ColorBoxByPose.cs" />
-     <Compile Include="Assets\Scripts\GroundController.cs" />
-     <Compile Include="Assets\Scripts\JointOrientation.cs" />
-     <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Rotator.cs" />
-     <Compile Include="Assets\Scripts\SampleSceneGUI.cs" />
-     <Compile Include="Assets\WallController.cs" />
-     <None Include="Assets\Myo\README-MyoUnity.txt" />
- <Reference Include="UnityEngine.Networking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\Myo\Scripts\Myo.NET\EventTypes.cs" />
+    <Compile Include="Assets\Myo\Scripts\Myo.NET\Hub.cs" />
+    <Compile Include="Assets\Myo\Scripts\Myo.NET\Myo.cs" />
+    <Compile Include="Assets\Myo\Scripts\Myo.NET\Pose.cs" />
+    <Compile Include="Assets\Myo\Scripts\Myo.NET\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\Myo\Scripts\Myo.NET\Quaternion.cs" />
+    <Compile Include="Assets\Myo\Scripts\Myo.NET\Vector3.cs" />
+    <Compile Include="Assets\Myo\Scripts\Myo.NET\libmyo.cs" />
+    <Compile Include="Assets\Myo\Scripts\ThalmicHub.cs" />
+    <Compile Include="Assets\Myo\Scripts\ThalmicMyo.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\ColorBoxByPose.cs" />
+    <Compile Include="Assets\Scripts\GroundController.cs" />
+    <Compile Include="Assets\Scripts\JointOrientation.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Rotator.cs" />
+    <Compile Include="Assets\Scripts\SampleSceneGUI.cs" />
+    <Compile Include="Assets\Scripts\Stats.cs" />
+    <Compile Include="Assets\WallController.cs" />
+    <None Include="Assets\Myo\README-MyoUnity.txt" />
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -79,5 +79,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>

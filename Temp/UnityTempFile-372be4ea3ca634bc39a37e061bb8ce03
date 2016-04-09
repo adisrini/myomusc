@@ -79,7 +79,6 @@
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_64
 -define:UNITY_EDITOR_OSX
-'Assets/GroundController.cs'
 'Assets/Myo/Scripts/Myo.NET/EventTypes.cs'
 'Assets/Myo/Scripts/Myo.NET/Hub.cs'
 'Assets/Myo/Scripts/Myo.NET/Myo.cs'
@@ -92,9 +91,12 @@
 'Assets/Myo/Scripts/ThalmicMyo.cs'
 'Assets/Scripts/CameraController.cs'
 'Assets/Scripts/ColorBoxByPose.cs'
+'Assets/Scripts/GroundController.cs'
 'Assets/Scripts/JointOrientation.cs'
 'Assets/Scripts/PlayerController.cs'
 'Assets/Scripts/Rotator.cs'
 'Assets/Scripts/SampleSceneGUI.cs'
+'Assets/Scripts/Stats.cs'
+'Assets/WallController.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Xml.Linq.dll'
