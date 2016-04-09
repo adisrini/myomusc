@@ -299,6 +299,9 @@ public class PlayerController : MonoBehaviour {
 			count = count + 1;
 			setCountText ();
 		}	
+		if (other.gameObject.CompareTag ("East Wall") || other.gameObject.CompareTag ("West Wall")) {
+			//exit
+		}
 	}
 
 	void setCountText() {

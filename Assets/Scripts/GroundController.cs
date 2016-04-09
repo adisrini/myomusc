@@ -5,12 +5,11 @@ public class GroundController : MonoBehaviour {
 
 	public int frameCount;
 
-	private float currentScale;
-	private bool shrink;
-	private bool grow;
+	public static float currentScale;
+	public static bool shrink;
+	public static bool grow;
 
-	//private PlayerController pc;
-	public static int pcCount;
+	private int pcCount;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +22,6 @@ public class GroundController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		pcCount = PlayerController.pcCount;
-		Debug.Log ("frame count: " + pcCount);
 		if (Input.GetKeyDown ("s")) {
 			shrink = true;
 			grow = false;
@@ -37,7 +35,7 @@ public class GroundController : MonoBehaviour {
 		if(shrink) {
 			float intendedScale = 1F;
 			if (transform.localScale.x <= intendedScale) {
-			
+				shrink = false;
 			} else {
 				Vector3 scale = transform.localScale;
 				scale.x = scale.x + (intendedScale - currentScale)/frameCount; // your new value
@@ -47,12 +45,13 @@ public class GroundController : MonoBehaviour {
 		if(grow) {
 			float intendedScale = 2F;
 			if (transform.localScale.x >= intendedScale) {
-			
+				grow = false;
 			} else {
 				Vector3 scale = transform.localScale;
 				scale.x = scale.x + (intendedScale - currentScale)/frameCount; // your new value
 				transform.localScale = scale;
 			}
+
 		}
 	}
 }

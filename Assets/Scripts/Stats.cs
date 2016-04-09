@@ -30,8 +30,9 @@ public class Stats {
 		float avg = average (array);
 		float sum = 0;
 		for (int i = 0; i < array.Length; i++) {
-			sum += Math.Pow (array.Length - avg, 2);
+			sum += (float) Math.Pow (array.Length - avg, 2);
 		}
+		return 0;
 	}
 
 	private static float normalizeAngle (float angle) {
