@@ -55,6 +55,11 @@
      <Compile Include="Assets\Myo\Scripts\Myo.NET\libmyo.cs" />
      <Compile Include="Assets\Myo\Scripts\ThalmicHub.cs" />
      <Compile Include="Assets\Myo\Scripts\ThalmicMyo.cs" />
+     <Compile Include="Assets\ProtoPack\Scripts\OpenAnimTest.cs" />
+     <Compile Include="Assets\ProtoPack\Scripts\PlatformLiftTest.cs" />
+     <Compile Include="Assets\ProtoPack\Scripts\PlayerJumpTest.cs" />
+     <Compile Include="Assets\ProtoPack\Scripts\RotateScript.cs" />
+     <Compile Include="Assets\ProtoPack\Scripts\SlimeMoveTest.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\ColorBoxByPose.cs" />
      <Compile Include="Assets\Scripts\GroundController.cs" />

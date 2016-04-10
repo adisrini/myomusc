@@ -40,6 +40,7 @@ public class WallController : MonoBehaviour {
 		}
 	}
 
+	//put this in PlayerController?
 	void OnTriggerEnter(Collider other) {
 		if(other.gameObject.CompareTag("East Wall") || other.gameObject.CompareTag("West Wall")  ) {
 			other.gameObject.SetActive(false); 
