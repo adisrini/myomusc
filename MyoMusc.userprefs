@@ -1,6 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Rotator.cs" Line="13" Column="96" />
+      <File FileName="Assets/Scripts/WallController.cs" Line="19" Column="4" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="308" Column="30" />
+      <File FileName="Assets/Scripts/GroundController.cs" Line="37" Column="5" />
+      <File FileName="Assets/Scripts/ScoreDisplay.cs" Line="10" Column="17" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

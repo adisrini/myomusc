@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour {
 	// Myo game object to connect with.
 	// This object must have a ThalmicMyo script attached.
 	public GameObject myo = null;
-
 	public static bool jitter;
 
 	public float threshold;
@@ -40,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 	private float _referenceRoll = 0.0f;
 
 	private Rigidbody rb;
-	private int count;
+	public static int count;
 	private int cacheSize;
 
 	// Use this for initialization
@@ -55,8 +54,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-
-
+		if (myo == null) {
+			myo = new GameObject ();
+		}
 		// Access the ThalmicMyo component attached to the Myo game object.
 		ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
 
@@ -262,6 +262,7 @@ public class PlayerController : MonoBehaviour {
 		return angle;
 	}
 
+
 	// Extend the unlock if ThalmcHub's locking policy is standard, and notifies the given myo that a user action was
 	// recognized.
 	private void ExtendUnlockAndNotifyUserAction (ThalmicMyo myo) {
@@ -289,16 +290,28 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if(other.gameObject.CompareTag("Pick Up")) {
-			other.gameObject.SetActive(false); 
+		if (other.gameObject.CompareTag ("Pick Up")) {
+			other.gameObject.SetActive (false); 
 			count = count + 1;
 			setCountText ();
 		}	
 		if (other.gameObject.CompareTag ("East Wall") || other.gameObject.CompareTag ("West Wall")) {
-			//end game
-			Application.LoadLevel(0);
-
+			count = 0;
+			setCountText ();
+			Vector3 position = transform.position;
+			position.x = 0f;
+			position.y = 0.5f;
+			position.z = -140f;
+			transform.position = position;
 		}
+		if (other.gameObject.CompareTag ("North Wall")) {
+			Application.LoadLevel (2);
+		}
+
+	}
+
+	void onCollisionEnter(Collider other) {
+		
 	}
 
 	void setCountText() {

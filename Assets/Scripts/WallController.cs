@@ -38,6 +38,13 @@ public class WallController : MonoBehaviour {
 			position.x = ground.transform.localScale.x * -5;
 			transform.position = position;
 		}
+
+		if (this.gameObject.CompareTag ("North Wall") || this.gameObject.CompareTag ("South Wall")) {
+			Vector3 scale = transform.localScale;
+			scale.x = 20.5f * (ground.transform.localScale.x / 2.0f);
+			transform.localScale = scale;
+		}
+
 	}
 
 }

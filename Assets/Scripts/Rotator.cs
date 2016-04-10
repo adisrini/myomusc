@@ -6,9 +6,11 @@ public class Rotator : MonoBehaviour {
 	public GameObject ground;
 	private Vector3 position;
 
+	private float rand;
+
 	void Start(){
 		position = transform.position;
-		float rand = Random.Range (-ground.transform.localScale.x * 4.0f, ground.transform.localScale.x * 4.0f);
+		rand = Random.Range (-ground.transform.localScale.x * 3.0f, ground.transform.localScale.x * 3.0f);
 		position.x = rand;
 		transform.position = position;
 	}
@@ -16,7 +18,7 @@ public class Rotator : MonoBehaviour {
 	void Update () {
 		transform.Rotate (new Vector3 (0, 30, 0) * Time.deltaTime);
 		position = transform.position;
-		position.x = (position.x*ground.transform.localScale.x)/2.0f;
+		position.x = (rand*ground.transform.localScale.x)/2.0f;
 		transform.position = position;
 	}
 }
