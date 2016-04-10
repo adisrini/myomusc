@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: c1f387dc018454ccbb45fd157e7dc2ec
 folderAsset: yes
 timeCreated: 1460250630
+=======
+guid: dafc47d04580d4f74b817d1d4c43df96
+folderAsset: yes
+timeCreated: 1460250664
+>>>>>>> divya
 licenseType: Free
 DefaultImporter:
   userData: 
