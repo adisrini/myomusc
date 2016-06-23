@@ -296,8 +296,7 @@ public class PlayerController : MonoBehaviour {
 		}	
 		if (other.gameObject.CompareTag ("East Wall") || other.gameObject.CompareTag ("West Wall")) {
 			//end game
-			Application.LoadLevel(0);
-
+			Debug.Log("collide");
 		}
 	}
 
