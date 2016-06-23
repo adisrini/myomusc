@@ -2,6 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
     <Files>
+<<<<<<< HEAD
       <File FileName="Assets/Scripts/GroundController.cs" Line="14" Column="20" />
       <File FileName="Assets/Scripts/PlayerController.cs" Line="31" Column="40" />
       <File FileName="Assets/Scripts/Stats.cs" Line="1" Column="1" />
@@ -9,6 +10,13 @@
       <File FileName="Assets/Scripts/CameraController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/SampleSceneGUI.cs" Line="24" Column="62" />
       <File FileName="Assets/Scripts/LevelLoader.cs" Line="1" Column="1" />
+=======
+      <File FileName="Assets/Scripts/Rotator.cs" Line="13" Column="96" />
+      <File FileName="Assets/Scripts/WallController.cs" Line="19" Column="4" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="308" Column="30" />
+      <File FileName="Assets/Scripts/GroundController.cs" Line="37" Column="5" />
+      <File FileName="Assets/Scripts/ScoreDisplay.cs" Line="10" Column="17" />
+>>>>>>> 91690045f77a717c283fd6873ebdfcade1179d44
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
